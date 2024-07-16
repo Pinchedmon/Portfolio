@@ -1,112 +1,122 @@
-import Image from "next/image";
+"use client";
+import About from "@/components/about";
+import Contact from "@/components/contact";
+import Home from "@/components/home";
+import Nav from "@/components/nav";
+import Works from "@/components/works";
 
-export default function Home() {
+import { motion, useAnimation } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+
+export default function Page() {
+  const controlsHome = useAnimation();
+  const controlsContact = useAnimation();
+  const controlsAbout = useAnimation();
+  const controlsWorks = useAnimation();
+  const homeRef = useRef(null);
+  const contactRef = useRef(null);
+  const worksRef = useRef(null);
+  const aboutRef = useRef(null);
+  const [isReady, setIsReady] = useState<boolean>(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (entry.target === homeRef.current) {
+              controlsHome.start({ opacity: 1, y: 0 });
+            } else if (entry.target === aboutRef.current) {
+              controlsAbout.start({ opacity: 1, y: 0 });
+            } else if (entry.target === worksRef.current) {
+              setIsReady(true);
+              controlsWorks.start({ opacity: 1, y: 0 });
+            } else if (entry.target === contactRef.current) {
+              controlsContact.start({ opacity: 1, y: 0 });
+            }
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    if (homeRef.current) {
+      observer.observe(homeRef.current);
+    }
+    if (aboutRef.current) {
+      observer.observe(aboutRef.current);
+    }
+    if (worksRef.current) {
+      observer.observe(worksRef.current);
+    }
+    if (contactRef.current) {
+      observer.observe(contactRef.current);
+    }
+
+    return () => {
+      if (homeRef.current) {
+        observer.unobserve(homeRef.current);
+      }
+      if (aboutRef.current) {
+        observer.unobserve(aboutRef.current);
+      }
+      if (worksRef.current) {
+        observer.unobserve(worksRef.current);
+      }
+      if (contactRef.current) {
+        observer.unobserve(contactRef.current);
+      }
+    };
+  }, [controlsHome, controlsContact]);
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
+    <main className="flex w-[1024px] min-h-screen flex-col">
+      <Nav />
+      <div className="relative w-[1024px] z-10">
+        <motion.div
+          ref={homeRef}
+          id="home"
+          initial={{ opacity: 0, y: 50 }}
+          animate={controlsHome}
+          transition={{ duration: 0.5 }}
+          className="min-h-screen"
+          style={{ paddingTop: "120px" }}
         >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
+          <Home />
+        </motion.div>
+        <motion.div
+          ref={aboutRef}
+          id="about"
+          initial={{ opacity: 0, y: 50 }}
+          animate={controlsAbout}
+          transition={{ duration: 0.5 }}
+          className="min-h-screen"
+          style={{ paddingTop: "120px" }}
         >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
+          <About isReady={isReady} />
+        </motion.div>
+        <motion.div
+          ref={worksRef}
+          id="works"
+          initial={{ opacity: 0, y: 50 }}
+          animate={controlsWorks}
+          transition={{ duration: 0.5 }}
+          className="min-h-screen"
+          style={{ paddingTop: "120px" }}
         >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
+          <Works />
+        </motion.div>
+        <motion.div
+          ref={contactRef}
+          id="contact"
+          initial={{ opacity: 0, y: 50 }}
+          animate={controlsContact}
+          transition={{ duration: 0.5 }}
+          className="min-h-screen"
+          style={{ paddingTop: "120px" }}
         >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+          <Contact />
+        </motion.div>
       </div>
     </main>
   );
