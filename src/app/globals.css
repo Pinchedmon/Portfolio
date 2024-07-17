@@ -38,6 +38,11 @@
   * {
     @apply border-border;
   }
+
+  :root,
+  html {
+    @apply w-full h-full;
+  }
   body {
     @apply bg-background text-foreground w-full flex justify-center;
   }

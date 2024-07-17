@@ -33,7 +33,7 @@ const Message = (props: { text: string; index: number }) => {
         <p
           className={`${
             props.index % 2 == 0 ? "ml-auto bg-gray-700" : "ml-right bg-orange"
-          }   text-4xl md:text-base px-8 py-4 md:px-3 md:py-1 rounded-3xl md:rounded-xl `}
+          }   text-lg md:text-base px-6 py-2 md:px-3 md:py-1 rounded-3xl md:rounded-xl `}
         >
           {props.index % 2 == 0
             ? typing
@@ -89,7 +89,7 @@ const Question = (props: { text: string; addNextMsg: () => void }) => {
       onClick={() => ClickButton()}
     >
       <button className="my-8 md:my-4 flex mt-auto justify-center w-full items-center gap-2">
-        <p className="bg-orange text-4xl md:text-base px-8 py-4 md:px-3 md:py-1 rounded-3xl md:rounded-xl">
+        <p className="bg-orange text-lg md:text-base px-6 py-2 md:px-3 md:py-1 rounded-3xl md:rounded-xl">
           {props.text}
         </p>
       </button>
@@ -125,7 +125,7 @@ const About = (props: { isReady: boolean }) => {
     }, 1000);
   };
   return (
-    <section className="w-full  text-white z-10 gap-[20px] flex ">
+    <section className="w-full  text-white z-10 gap-[20px] h-[86vh] flex ">
       <div
         className={`border h-full border-white/10 bg-black/60 flex-col w-full rounded-3xl p-[40px] ${
           !isStarted && "flex justify-center items-center"
@@ -152,7 +152,7 @@ const About = (props: { isReady: boolean }) => {
         {!isStarted && (
           <button
             onClick={() => setIsStarted(true)}
-            className="bg-orange text-4xl md:text-base px-8 py-4 md:px-3 md:py-1 rounded-3xl md:rounded-xl"
+            className="bg-orange text-xl md:text-base px-8 py-4 md:px-3 md:py-1 rounded-3xl md:rounded-xl"
           >
             {t("begin")}
           </button>

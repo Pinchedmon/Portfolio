@@ -68,7 +68,7 @@ const Works = () => {
   ];
 
   return (
-    <section className="px-4 text-white z-10 gap-[20px] flex w-full md:h-[80vh]">
+    <section className="px-4 text-white z-10 gap-[20px] flex w-full h-[86vh] md:h-[80vh]">
       <div className="border border-white/10 bg-black/60 flex-col items-center justify-between align-center h-full w-full rounded-3xl p-[40px]">
         <Carousel className="flex items-center justify-between align-center w-full h-full">
           <CarouselContent>
@@ -84,20 +84,20 @@ const Works = () => {
                         alt={project.title}
                         className="w-[600px] md:w-[300px] rounded-2xl mb-4"
                       />
-                      <h3 className="text-5xl md:text-2xl  font-semibold">
+                      <h3 className="text-2xl md:text-2xl  font-semibold">
                         {project.title}
                       </h3>
-                      <p className="mt-2  text-center text-3xl md:text-lg">
+                      <p className="mt-2  text-center text-xl md:text-lg">
                         {project.description}
                       </p>
-                      <p className="mt-2 text-center text-3xl md:text-lg mb-2">
+                      <p className="mt-2 text-center text-xl md:text-lg mb-2">
                         Stack: {project?.stack}
                       </p>
                       <div className="flex gap-4">
                         {project.links?.github && (
                           <Link
                             href={project?.links?.github as string}
-                            className="bg-orange text-3xl md:text-base px-2 py-1 rounded-xl"
+                            className="bg-orange text-xl md:text-base px-2 py-1 rounded-xl"
                           >
                             github
                           </Link>
@@ -105,7 +105,7 @@ const Works = () => {
                         {project.links?.partner && (
                           <Link
                             href={project?.links?.partner as string}
-                            className="bg-orange text-3xl md:text-base px-2 py-1 rounded-xl"
+                            className="bg-orange text-xl md:text-base px-2 py-1 rounded-xl"
                           >
                             partner
                           </Link>
@@ -113,7 +113,7 @@ const Works = () => {
                         {project.links?.site && (
                           <Link
                             href={project?.links?.site as string}
-                            className="bg-orange text-3xl md:text-base px-2 py-1 rounded-xl"
+                            className="bg-orange text-xl md:text-base px-2 py-1 rounded-xl"
                           >
                             {t("site")}
                           </Link>

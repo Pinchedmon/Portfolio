@@ -70,16 +70,16 @@ export default function Page() {
   }, [controlsHome, controlsContact, controlsAbout, controlsWorks]);
 
   return (
-    <main className="flex w-full px-2 lg:w-[1024px] min-h-screen flex-col">
+    <main className="flex w-full  lg:w-[1024px] min-h-screen flex-col justify-normal">
       <Nav />
-      <div className="relative w-[1024px]  z-10">
+      <div className="relative px-1 z-10 w-full max-w-full">
         <motion.div
           ref={homeRef}
           id="home"
           initial={false} // Add this
           animate={controlsHome}
           transition={{ duration: 0.5 }}
-          className="min-h-screen pt-[140px] w-full  md:pt-[120px]"
+          className="min-h-screen pt-[90px] w-full  md:pt-[120px]"
         >
           <Home />
         </motion.div>
@@ -89,7 +89,7 @@ export default function Page() {
           initial={false} // Add this
           animate={controlsAbout}
           transition={{ duration: 0.5 }}
-          className="min-h-screen pt-[140px] w-full  md:pt-[120px]"
+          className="min-h-screen pt-[90px] w-full  md:pt-[120px]"
         >
           <About isReady={isReady} />
         </motion.div>
@@ -99,7 +99,7 @@ export default function Page() {
           initial={false} // Add this
           animate={controlsWorks}
           transition={{ duration: 0.5 }}
-          className="min-h-screen  w-full  md:pt-[120px]"
+          className="min-h-screen pt-[90px] w-full  md:pt-[120px]"
         >
           <Works />
         </motion.div>
@@ -109,7 +109,7 @@ export default function Page() {
           initial={false} // Add this
           animate={controlsContact}
           transition={{ duration: 0.5 }}
-          className="min-h-screen  w-full  md:pt-[120px]"
+          className="min-h-screen  pt-[90px] w-full  md:pt-[120px]"
         >
           <Contact />
         </motion.div>

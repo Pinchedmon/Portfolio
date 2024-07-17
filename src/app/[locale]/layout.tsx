@@ -15,6 +15,10 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale}>
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+      />
       <body>
         <Background />
         <NextIntlClientProvider messages={messages}>
