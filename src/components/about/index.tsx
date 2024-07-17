@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 const Message = (props: { text: string; index: number }) => {
   const [text, setText] = useState("");
@@ -28,11 +29,11 @@ const Message = (props: { text: string; index: number }) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="flex w-full items-center gap-2">
+      <div className="my-8 md:my-4 flex w-full items-center text-4xl gap-2">
         <p
           className={`${
             props.index % 2 == 0 ? "ml-auto bg-gray-700" : "ml-right bg-orange"
-          }   px-3 py-1 rounded-xl `}
+          }   text-4xl md:text-base px-8 py-4 md:px-3 md:py-1 rounded-3xl md:rounded-xl `}
         >
           {props.index % 2 == 0
             ? typing
@@ -87,23 +88,26 @@ const Question = (props: { text: string; addNextMsg: () => void }) => {
       variants={variants}
       onClick={() => ClickButton()}
     >
-      <button className="flex mt-auto justify-center w-full items-center gap-2">
-        <p className="bg-orange px-3 py-1 rounded-xl">{props.text}</p>
+      <button className="my-8 md:my-4 flex mt-auto justify-center w-full items-center gap-2">
+        <p className="bg-orange text-4xl md:text-base px-8 py-4 md:px-3 md:py-1 rounded-3xl md:rounded-xl">
+          {props.text}
+        </p>
       </button>
     </motion.div>
   );
 };
 
 const About = (props: { isReady: boolean }) => {
+  const t = useTranslations("About");
   const [msgs, setMsgs] = useState<Array<string>>([]);
   const [isStarted, setIsStarted] = useState(false);
-  const questions = ["Сможешь сделать крутой сайт?", "Какой стек?"];
+  const questions = [t("canU?"), t("stack?")];
   const [isNextMsg, setIsNextMsg] = useState(false);
 
   useEffect(() => {
     if (isStarted) {
       setTimeout(() => {
-        setMsgs((msgs) => ["Привет, приятно познакомиться!)"]);
+        setMsgs((msgs) => [t("hello")]);
         setIsNextMsg(true);
       }, 1000);
     }
@@ -112,17 +116,16 @@ const About = (props: { isReady: boolean }) => {
     setMsgs((msgs) => [...msgs, text]);
     let otvet;
     if (text.length > 20) {
-      otvet = "Конечно же!!! Срочно пиши мне в телеграм!!!";
+      otvet = t("ok");
     } else {
-      otvet =
-        "Я пишу сайты используя next js, ts,react, redux toolkit, tailwind, prisma, postgresql, docker";
+      otvet = t("stack");
     }
     setTimeout(() => {
       setMsgs((msgs) => [...msgs, otvet]);
     }, 1000);
   };
   return (
-    <section className="w-full text-white z-10 gap-[20px] flex  h-[80vh] ">
+    <section className="w-full  text-white z-10 gap-[20px] flex ">
       <div
         className={`border h-full border-white/10 bg-black/60 flex-col w-full rounded-3xl p-[40px] ${
           !isStarted && "flex justify-center items-center"
@@ -135,7 +138,7 @@ const About = (props: { isReady: boolean }) => {
           ))}
 
         {isNextMsg && (
-          <div className="text-center h-full mt-auto flex flex-col gap-2 justify-center">
+          <div className="text-center h-full mt-auto flex flex-col gap-4 justify-center">
             {questions.length > 0 &&
               questions.map((msg, index) => (
                 <Question
@@ -149,9 +152,9 @@ const About = (props: { isReady: boolean }) => {
         {!isStarted && (
           <button
             onClick={() => setIsStarted(true)}
-            className="bg-orange px-3 py-1 rounded-xl"
+            className="bg-orange text-4xl md:text-base px-8 py-4 md:px-3 md:py-1 rounded-3xl md:rounded-xl"
           >
-            Начать диалог?
+            {t("begin")}
           </button>
         )}
         <div></div>

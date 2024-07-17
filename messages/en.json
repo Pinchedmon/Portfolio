@@ -1,0 +1,38 @@
+{
+  "HomePage": {
+    "title1": "Hey, I`m Alexey, a frontend",
+    "title2": "developer with 2 years of",
+    "title3": "experience",
+    "subtitle1": "I take great care to ensure that the product ",
+    "subtitle2": " has no glitches and the quality is complete",
+    "link": "Contact me"
+  },
+  "Nav": {
+    "home": "Home",
+    "about": "About",
+    "works": "Works",
+    "contact": "Contact",
+    "me": "Alexey Temnikov"
+  },
+  "About": {
+    "hello": "hello!)",
+    "ok": "Of course!!! Text me on telegram right away!!!",
+    "stack": "I write websites using next js, ts,react, redux toolkit, tailwind, prisma, postgresql, docker",
+    "begin": "Start a dialog?",
+    "stack?": "What stack?",
+    "canU?": "Can you make a cool website?"
+  },
+  "Works": {
+    "site": "site",
+    "partner": "partner",
+    "descr1": "A social networking site that makes it easy for you to communicate with other students in my college",
+    "descr2": "Website for university students' internships",
+    "descr3": "Side for my productivity and planning (Done with @Ibizza)",
+    "descr4": "Anime site (VPN required)",
+    "descr5": "Site directory site (needs VPN)"
+  },
+  "Contact": {
+    "title": "Contact",
+    "open": "open"
+  }
+}
